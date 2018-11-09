@@ -1,0 +1,48 @@
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+ // data file contents: 
+ //Mrs., Sarah, Hamilton, 23 Oak, Paducah, KY, 42002, 3
+ //Dr., Jennifer, Lee, 129 Pine, Chicago, IL, 60018, 1
+ //Mr., Joseph, Pauley, 89 Breeze, gulf Shores, AL, 36542, 8
+{
+    string title, firstName, lastName, streetAddress, city, state, zip;
+    int numBoxes, counter;
+    ifstream data_in;
+    ofstream data_out;
+    data_in.open("VernonHills.dat");
+    data_out.open("VernonHillsCorrected.dat");
+  // if statement shows data_in never works. every time I tried it failed to open file and skipped loop. 
+  // if(!(data_in.fail())) {
+    while(!(data_in.eof())){
+        data_in >> title;
+        data_in >> firstName;
+        data_in >> lastName;
+        data_in >> streetAddress;
+        data_in >> city;
+        data_in >> state;
+        data_in >> zip;
+        data_in >> numBoxes;
+        for(counter = 0; counter <= numBoxes; counter++) {
+            data_out << title;
+            data_out << firstName;
+            data_out << lastName;
+            data_out << streetAddress;
+            data_out << city;
+            data_out << state;
+            data_out << zip;
+            data_out << "Box " << counter << "of " << numBoxes << endl;
+            // Next lines just for testing to see if data_in actually assigned anything
+            // cout << title << firstName << lastName << streetAddress << city << state << zip << endl;
+            // cout << title << endl;
+        }
+    }
+    //}
+    data_in.close();
+    data_out.close();
+    cout << "Code by Nicolas Wiley" << endl;
+    return 0;
+}
+
